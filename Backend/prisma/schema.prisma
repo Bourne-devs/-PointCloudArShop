@@ -1,0 +1,60 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL", "file:./dev.db")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  createdAt DateTime @default(now())
+  plantScans PlantScan[]
+}
+
+model PlantScan {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  filePath    String
+  fileFormat  String
+  pointCount  Int
+  boundingBox Geometry?
+  userId      String
+  user        User?    @relation(fields: [userId], references: [id])
+  measurements Measurement[]
+  createdAt   DateTime @default(now())
+}
+
+model Measurement {
+  id        String   @id @default(cuid())
+  height    Float
+  width     Float
+  depth     Float
+  unit      String   @default("mm")
+  plantScanId String
+  plantScan PlantScan @relation(fields: [plantScanId], references: [id])
+  createdAt DateTime @default(now())
+}
+
+type ShoppingCart {
+  id        String   @id @default(cuid())
+  userId    String?
+  user      User?    @relation(fields: [userId], references: [id])
+  items     CartItem[]
+  createdAt DateTime @default(now())
+}
+
+model CartItem {
+  id        String   @id @default(cuid())
+  cartId    String
+  cart      Cart     @relation(fields: [cartId], references: [id])
+  plantScanId String
+  plantScan PlantScan @relation(fields: [plantScanId], references: [id])
+  quantity  Int      @default(1)
+  price     Float
+  addedAt   DateTime @default(now())
+}
