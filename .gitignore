@@ -1,0 +1,39 @@
+# Environment files
+.env
+.env.local
+.env.production
+
+# Sensitive configuration
+.claude/settings.local.json
+*.key
+*.pem
+*.p12
+*.pfx
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# iOS
+*.xcworkspace
+*.xcodeproj
+*.xcuserstate
+.DS_Store
+
+# Build outputs
+dist/
+build/
+out/
+
+# Logs
+*.log
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+Thumbs.db
+desktop.ini
