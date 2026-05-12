@@ -7,7 +7,8 @@ Cross-platform app (iOS first, then web/Android) that visualizes plant geometry 
 - [✅] Project initialized locally
 - [✅] CLAUDE.md plan document created
 - [✅] Git remote set to https://github.com/Bourne-devs/-PointCloudArShop
-- [✅] Initial commit pushed
+- [✅] Initial commit pushed (clean, no secrets)
+- [✅] .gitignore configured to exclude sensitive files
 
 ## File Progress List
 ### Phase 1: Foundation
